@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>简单谈谈node异步IO与事件循环 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="简单谈谈node异步IO与事件循环随着JavaScript生态的迅猛发展，JS的活动范围已经不仅仅局限的浏览器前端，随着NodeJS的诞生已然再向服务端迅速的扩张。一些大公司也在开始启用Node来重构以前的业务功能。今天就简单谈谈nodeJS的2大核心特点：异步IO、事件循环。 异步IO虽然NodeJS作为后端的运行平台，但它仍然保留了前端浏览器的一些特点和JS本身的语言特性。熟悉前端的工程师应该">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单谈谈node异步IO与事件循环">
+<meta property="og:url" content="http://yoursite.com/2017/06/17/node-event-loop/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简单谈谈node异步IO与事件循环随着JavaScript生态的迅猛发展，JS的活动范围已经不仅仅局限的浏览器前端，随着NodeJS的诞生已然再向服务端迅速的扩张。一些大公司也在开始启用Node来重构以前的业务功能。今天就简单谈谈nodeJS的2大核心特点：异步IO、事件循环。 异步IO虽然NodeJS作为后端的运行平台，但它仍然保留了前端浏览器的一些特点和JS本身的语言特性。熟悉前端的工程师应该">
+<meta property="og:updated_time" content="2017-06-17T14:26:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="简单谈谈node异步IO与事件循环">
+<meta name="twitter:description" content="简单谈谈node异步IO与事件循环随着JavaScript生态的迅猛发展，JS的活动范围已经不仅仅局限的浏览器前端，随着NodeJS的诞生已然再向服务端迅速的扩张。一些大公司也在开始启用Node来重构以前的业务功能。今天就简单谈谈nodeJS的2大核心特点：异步IO、事件循环。 异步IO虽然NodeJS作为后端的运行平台，但它仍然保留了前端浏览器的一些特点和JS本身的语言特性。熟悉前端的工程师应该">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -59,9 +63,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-node-event-loop" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-node-event-loop" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/17/node-event-loop/" class="article-date">
   <time datetime="2017-06-17T14:26:26.191Z" itemprop="datePublished">2017-06-17</time>
@@ -74,8 +76,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/17/node-event-loop/">简单谈谈node异步IO与事件循环</a>
+    <h1 class="article-title" itemprop="name">
+      简单谈谈node异步IO与事件循环
     </h1>
   
 
@@ -126,119 +128,19 @@ _wait()，线程挂起，等待系统返回IO操作的结果再执行callback内
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-js-event" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/11/js-event/" class="article-date">
-  <time datetime="2017-05-11T04:57:50.456Z" itemprop="datePublished">2017-05-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/js-event/" data-id="cj41dno5x000042oyvrnzj0ut" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
+  
+    <a href="/2017/05/11/js-event/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
   
 </article>
-
-
-  
-    <article id="post-create-myblog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/11/create-myblog/" class="article-date">
-  <time datetime="2017-05-11T02:57:29.825Z" itemprop="datePublished">2017-05-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/11/create-myblog/">Create-myBlog</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>欢迎来到我的博客</p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h3 id="搭建Hexo博客"><a href="#搭建Hexo博客" class="headerlink" title="搭建Hexo博客"></a>搭建Hexo博客</h3><p>更多信息: <a href="https://duzhongwen.github.com/writing.html" target="_blank" rel="external">Writing</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/create-myblog/" data-id="cj2cr85xu000079oy1d33t0ht" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/05/hello-world/" class="article-date">
-  <time datetime="2017-05-05T15:08:16.972Z" itemprop="datePublished">2017-05-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/05/hello-world/" data-id="cj2bztge80000pgoyrt4a2j2s" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
         
