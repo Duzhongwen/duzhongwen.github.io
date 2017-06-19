@@ -14,7 +14,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20161206201855134?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTmV4dFN0YW5k/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=826586400,1734338889&fm=11&gp=0.jpg">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1497719641464&di=8fffc44d0f23746b02f17ffa661c4633&imgtype=0&src=http%3A%2F%2Fwww.th7.cn%2Fd%2Ffile%2Fp%2F2015%2F12%2F26%2Ff07849eb815386821a444d026dd75e7c.jpg">
-<meta property="og:updated_time" content="2017-06-19T10:42:38.000Z">
+<meta property="og:updated_time" content="2017-06-19T10:46:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单谈谈node异步IO与事件循环">
 <meta name="twitter:description" content="随着JavaScript生态的迅猛发展，JS的活动范围已经不仅仅局限的浏览器前端，随着NodeJS的诞生已然再向服务端迅速的扩张。一些大公司也在开始启用Node来重构以前的业务功能。今天就简单谈谈nodeJS的2大核心特点：异步IO、事件循环。 异步IO虽然NodeJS作为后端的运行平台，但它仍然保留了前端浏览器的一些特点和JS本身的语言特性。熟悉前端的工程师应该知道，浏览器的JS是以单线程的方式">
@@ -70,7 +70,7 @@
         <section id="main"><article id="post-node-event-loop" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/19/node-event-loop/" class="article-date">
-  <time datetime="2017-06-19T10:42:38.112Z" itemprop="datePublished">2017-06-19</time>
+  <time datetime="2017-06-19T10:46:57.106Z" itemprop="datePublished">2017-06-19</time>
 </a>
     
   </div>
@@ -90,16 +90,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>随着JavaScript生态的迅猛发展，JS的活动范围已经不仅仅局限的浏览器前端，随着NodeJS的诞生已然再向服务端迅速的扩张。一些大公<br>司也在开始启用Node来重构以前的业务功能。今天就简单谈谈nodeJS的2大核心特点：异步IO、事件循环。</p>
-<h2 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h2><p>虽然NodeJS作为后端的运行平台，但它仍然保留了前端浏览器的一些特点和JS本身的语言特性。熟悉前端的工程师应该知道，浏览器的JS<br>是以单线程的方式来运行的，虽然浏览器本身有维护其他线程，但我们所写的代码都是在同一条线程里面执行的，这样的好处是程序员在编<br>写代码的时候不用考虑多线程下的状态切换，也就不会出现死锁或者一些其他的IO操作冲突的问题，同时也降低了线程来回切换所造成的性<br>能开销。当然NodeJS作为JS在服务端的运行环境，也延续了跟浏览器相同的特性，单线程的运作模式。</p>
+<h2 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h2><p>虽然NodeJS作为后端的运行平台，但它仍然保留了前端浏览器的一些特点和JS本身的语言特性。熟悉前端的工程师应该知道，浏览器的JS<br>是以单线程的方式来运行的，虽然浏览器本身有维护其他线程，但我们所写的代码都是在同一条线程里面执行的，这样的好处是程序员在<br>编写代码的时候不用考虑多线程下的状态切换，也就不会出现死锁或者一些其他的IO操作冲突的问题，同时也降低了线程来回切换所造成<br>的性能开销。当然NodeJS作为JS在服务端的运行环境，也延续了跟浏览器相同的特性，单线程的运作模式。</p>
 <p><img src="http://img.blog.csdn.net/20161206201855134?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTmV4dFN0YW5k/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>既然是NodeJS是单线程的，那你可能就有疑问了，那程序要如何处理并发的问题呢？这里就要引入异步IO的理念了。异步本来也不是一个比<br>较新颖的概念，在其他语言里面早有应用，但是像Node这样如此频繁的使用异步IO操作还是仅此一家。现在我们就简单讲一个读写文件的例<br>子来理解异步IO，它与前端Ajax的调用方式是非常类似的：</p>
+<p>既然是NodeJS是单线程的，那你可能就有疑问了，那程序要如何处理并发的问题呢？这里就要引入异步IO的理念了。异步本来也不是一个<br>比较新颖的概念，在其他语言里面早有应用，但是像Node这样如此频繁的使用异步IO操作还是仅此一家。现在我们就简单讲一个读写文件<br>的例子来理解异步IO，它与前端Ajax的调用方式是非常类似的：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs =  <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.readFile(<span class="string">'/path'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, file</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'读取文件完成'</span>);</div><div class="line">&#125;)</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'发送读取文件'</span>);</div></pre></td></tr></table></figure>
-<p>执行之后我们可以看到，’发起读取文件‘是在’读取文件完成‘之前输出的。’读取文件完成‘所处的回调函数取决于读取文件何时完成。从这<br>里可以看出在读取文件的时候程序是在继续往下执行的，当文件读取完成之后再通知程序执行读取成功的回调，读取文件的IO过程程序并不<br>是阻塞的，这就是异步IO的调用模式。</p>
+<p>执行之后我们可以看到，’发起读取文件‘是在’读取文件完成‘之前输出的。’读取文件完成‘所处的回调函数取决于读取文件何时完成。从这<br>里可以看出在读取文件的时候程序是在继续往下执行的，当文件读取完成之后再通知程序执行读取成功的回调，读取文件的IO过程程序并<br>不是阻塞的，这就是异步IO的调用模式。</p>
 <p><img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=826586400,1734338889&amp;fm=11&amp;gp=0.jpg" alt=""></p>
-<p>为什么Node中异步调用如此频繁，其实这主要得益于Node的发布者在底层开发出大量基于C++的异步API可供开发者调用，包括文件读取、网<br>络请求等等模块。这样的优势在于程序无需等待每一步IO操作完成才能执行下一步的动作，各I/O操作在底层并发完成，成功后再通知主线程<br>执行回调。这样可以大大的提升执行效率，不用浪费时间等待漫长的I/O调用结束。</p>
+<p>为什么Node中异步调用如此频繁，其实这主要得益于Node的发布者在底层开发出大量基于C++的异步API可供开发者调用，包括文件读<br>取、网络请求等等模块。这样的优势在于程序无需等待每一步IO操作完成才能执行下一步的动作，各I/O操作在底层并发完成，成功后再<br>通知主线程执行回调。这样可以大大的提升执行效率，不用浪费时间等待漫长的I/O调用结束。</p>
 <h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>Node.js 的每一个 API 都是异步的，并作为一个独立线程运行，使用异步函数调用，并处理并发。那么异步操作完成之后主线程是如何知道<br>并执行对应的回调的呢？这里就引入了事件循环的机制，Node.js 单线程类似进入一个while(true)的事件循环，通过它查询事件观察者，直<br>到没有事件观察者退出，每个异步事件都生成一个或者多个事件观察者，如果有事件发生就调用该回调函数，每执行一次循环体的过程被称为<br>一次Tick。</p>
 <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1497719641464&amp;di=8fffc44d0f23746b02f17ffa661c4633&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.th7.cn%2Fd%2Ffile%2Fp%2F2015%2F12%2F26%2Ff07849eb815386821a444d026dd75e7c.jpg" alt=""></p>
-<p>在node进程启动时，底层C++源码会进入到main函数，同时会初始化一个数据结构default_loop_struct,这个数据结构是事件循环的核心，<br>然后加载js文件并执行。当程序执行需要调用异步API的时，如读写文件，这些异步的API模块将会lib模块&gt;C++模块&gt;libuv接口&gt;最终系统底<br>层的API&gt;系统返回结果和JavaScript代码（callback函数的js代码）两部分，然后被封装成一个IO观察者并保存在default_loop_struct<br>中。引入观察者的模式是比较常见的事件监听方式，主要是用于判断观察者中是否有需要处理的事件。事件循环则是从观察者那里取出事件并<br>执行。</p>
+<p>在node进程启动时，底层C++源码会进入到main函数，同时会初始化一个数据结构default_loop_struct,这个数据结构是事件循环的核心，<br>然后加载js文件并执行。当程序执行需要调用异步API的时，如读写文件，这些异步的API模块将会lib模块&gt;C++模块&gt;libuv接口&gt;最终系统底<br>层的API&gt;系统返回结果和JavaScript代码（callback函数的js代码）两部分，然后被封装成一个IO观察者并保存在default_loop_struct<br>中。引入观察者的模式是比较常见的事件监听方式，主要是用于判断观察者中是否有需要处理的事件。事件循环则是从观察者那里取出事<br>件并执行。</p>
 <p>进入事件循环，调用libuv的事件循环的入库函数uv_run()，如果存在异步的IO操作，那么查询default_loop_struct保存的对应的IO观察<br>者，如果存在观察者中存在系统返回的数据，则执行对应callback的JS代码，执行完毕之后main函数继续调用libuv的事件循环入库uv_ru<br>n()，node进入下一个Tick。</p>
 <p>有一点需要注意：只有用户的js代码全部执行完之后，node才会进入事件循环，并且uv_run()的while循环其实只做了一件事情就是判断<br>default_loop_struct中是否还有IO观察者，如果没有则uv_run()退出，node进程也随之退出。若还有IO观察者，则进入epoll_wait()，线<br>程挂起，等待系统返回IO操作的结果再执行callback内容，没有数据到来则一直等待。</p>
 <p>总结：事件循环 和 观察者是Node异步IO构成的重要核心。</p>
@@ -107,7 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/19/node-event-loop/" data-id="cj440k0ih00036yoy3ttfgg7y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/19/node-event-loop/" data-id="cj440o3gw00027soyvr6vue96" class="article-share-link">Share</a>
       
       
     </footer>
@@ -116,19 +116,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/06/19/web-semantics/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          理解web语义化
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/11/create-myblog/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/06/19/web-semantics/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Create-myBlog</div>
+      <div class="article-nav-title">理解web语义化</div>
     </a>
   
 </nav>
@@ -165,11 +156,11 @@
       <ul>
         
           <li>
-            <a href="/2017/06/19/web-semantics/">理解web语义化</a>
+            <a href="/2017/06/19/node-event-loop/">简单谈谈node异步IO与事件循环</a>
           </li>
         
           <li>
-            <a href="/2017/06/19/node-event-loop/">简单谈谈node异步IO与事件循环</a>
+            <a href="/2017/06/19/web-semantics/">理解web语义化</a>
           </li>
         
           <li>
