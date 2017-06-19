@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -61,10 +61,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-web-semantics" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/19/web-semantics/" class="article-date">
+  <time datetime="2017-06-19T10:43:59.448Z" itemprop="datePublished">2017-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/19/web-semantics/">理解web语义化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>什么是语义化？其实简单说来就是让机器可以读懂内容。先随便扯扯。对于当前的 Web 而言，HTML 是联系大多数 Web 资源的纽带，<br>也是内容的载体。在 Web 被刚刚设计出来的时候，Tim Berners-Lee 可能不会想到它现在会达到的规模以及深入到我们生活的那么<br>多方面。也许起初的想法很简单：用来发布 Web 内容和资源的索引，方便人们查看。但是随着 Web 规模的不断扩大，信息量之大已<br>经不在人肉处理的范围之内了。这个时候人们开始用机器来处理 Web 上发布的各种内容，搜索引擎就诞生了。再后来，人们又设计了<br>各种智能程序来对索引好的内容作各种处理和挖掘。所以让机器能够更好地读懂 Web 上发布的各种内容就变得越来越重要。其实HTML<br>在刚开始设计出来的时候就是带有一定的「语义」的，包括段落、表格、图片、标题等等，但这些更多地只是方便浏览器等 UA 对它们<br>作合适的处理。但逐渐地，机器也要借助 HTML 提供的语义以及自然语言处理的手段来「读懂」它们从网上获取的 HTML 文档，但它<br>们无法读懂例如「红色的文字」或者是深度嵌套的表格布局中内容的含义，因为太多已有的内容都是专门为了可视化的浏览器设计的。<br>面对这种情况，出现了两种观点：</p>
+<pre><code>1. 我们可以让机器的理解能力越来越接近人类，人能看懂、听懂的东西，机器也能理解；
+2. 我们应该在发布内容的时候，就用机器可读的、被广泛认可的语义信息来描述内容，来降低机器处理 Web 内容的难度（HTML
+本身就已经是朝这个方向迈出的一小步了）。
+</code></pre><p><img src="https://pic2.zhimg.com/01b4d93c152d2a9c2db734065be0f3f5_b.jpg" alt=""></p>
+<p>我画的这个图，意思是说，内容的语义表达能力和 AI 的智能程度决定了机器分析处理 Web 内容能力的高低。上面观点 1 的方向是朝<br>着人类水平的人工智能努力，而观点 2 的方向正是万维网创始人 Tim Berners-Lee 爵士提出的美好愿景：语义网。语义网我就不多说<br>了，简单来说就是让一切内容和包括对关系的描述都成为 Web 上的资源，都可以由唯一的 URI 定义，语义明确、机器可读。显然，两<br>条路都的终极目标都很遥远，第一条路技术上难以实现，而第二条路实施起来障碍太多。我画的这个图，意思是说，内容的语义表达能力<br>和 AI 的智能程度决定了机器分析处理 Web 内容能力的高低。上面观点 1 的方向是朝着人类水平的人工智能努力，而观点 2 的方向正<br>是万维网创始人Tim Berners-Lee 爵士提出的美好愿景：语义网。语义网我就不多说了，简单来说就是让一切内容和包括对关系的描述<br>都成为 Web 上的资源，都可以由唯一的 URI 定义，语义明确、机器可读。显然，两条路都的终极目标都很遥远，第一条路技术上难以实<br>现，而第二条路实施起来障碍太多。我认为我们当前能够看得见摸得着的 Web 语义化，其实就是在往第二条路的方向上，迈出的一小步，<br>即对已经有的被广泛认可的 HTML 标准做改进。我们刚开始意识到，我们必须回归内容本身，将内容本身的语义合理地表述出来，再为不<br>同的用户代理设计不同的样式描述，也就是我们说的内容与样式分离。这样我们在提供内容的时候，首先要做的就是将内容本身进行合理<br>的描述，暂时不用考虑它的最终呈现会是什么样子。HTML 规范其实一直在往语义化的方向上努力，许多元素、属性在设计的时候，就已<br>经考虑了如何让各种用户代理甚至网络爬虫更好地理解 HTML 文档。HTML5 更是在之前规范的基础上，将所有表现层（presentational<br>）的语义描述都进行了修改或者删除，增加了不少可以表达更丰富语义的元素。为什么这样的语义元素是有意义的？因为它们被广泛认可。<br>所谓语义本身就是对符号的一种共识，被认可的程度越高、范围越广，人们就越可以依赖它实现各种各样的功能。HTML5 并非 Web 语义<br>唯一倚仗的规范，除了 W3C 和 WHATWG 外，还有其它的组织在为扩展、标准化 Web 语义做着贡献。只要有浏览器厂商、搜索引擎原意<br>支持，它们的规范一样可以成为通用的基础设施。例如 microformats 社区以及 <a href="http://Schema.org" target="_blank" rel="external">http://Schema.org</a> 上都有对 HTML 以及 Microdata<br>（<a href="http://www.w3.org/TR/html5/microdata.html）" target="_blank" rel="external">http://www.w3.org/TR/html5/microdata.html）</a> 规范的扩展词汇表，Google、Bing、Yahoo! 等搜索引擎以及各个主流浏览器都<br>不同程度地接纳了其中定义的语义扩展，并应用在了生产中。下面举两个 Google 应用扩展语义的例子。Google 的搜索结果，可以根据<br>microformats的 hCard 语法从抓取的页面识别出人物信息：</p>
+<p><img src="https://pic4.zhimg.com/f8ba9082973b5a7abcbfa969c02e3ce7_b.jpg" alt=""></p>
+<p>具体一点：可以看一下这个网页<a href="http://justineo.github.io/slideshows/semantic-html" target="_blank" rel="external">Semantic HTML</a>，这是前人总结的比较好的html语义化的说明</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/19/web-semantics/" data-id="cj440k0ig00026yoya7egh428" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-node-event-loop" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/19/node-event-loop/" class="article-date">
-  <time datetime="2017-06-19T10:40:00.143Z" itemprop="datePublished">2017-06-19</time>
+  <time datetime="2017-06-19T10:42:38.112Z" itemprop="datePublished">2017-06-19</time>
 </a>
     
   </div>
@@ -93,59 +137,15 @@
 <p>为什么Node中异步调用如此频繁，其实这主要得益于Node的发布者在底层开发出大量基于C++的异步API可供开发者调用，包括文件读取、网<br>络请求等等模块。这样的优势在于程序无需等待每一步IO操作完成才能执行下一步的动作，各I/O操作在底层并发完成，成功后再通知主线程<br>执行回调。这样可以大大的提升执行效率，不用浪费时间等待漫长的I/O调用结束。</p>
 <h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>Node.js 的每一个 API 都是异步的，并作为一个独立线程运行，使用异步函数调用，并处理并发。那么异步操作完成之后主线程是如何知道<br>并执行对应的回调的呢？这里就引入了事件循环的机制，Node.js 单线程类似进入一个while(true)的事件循环，通过它查询事件观察者，直<br>到没有事件观察者退出，每个异步事件都生成一个或者多个事件观察者，如果有事件发生就调用该回调函数，每执行一次循环体的过程被称为<br>一次Tick。</p>
 <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1497719641464&amp;di=8fffc44d0f23746b02f17ffa661c4633&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.th7.cn%2Fd%2Ffile%2Fp%2F2015%2F12%2F26%2Ff07849eb815386821a444d026dd75e7c.jpg" alt=""></p>
-<p>在node进程启动时，底层C++源码会进入到main函数，同时会初始化一个数据结构default_loop_struct,这个数据结构是事件循环的核心，然<br>后加载js文件并执行。当程序执行需要调用异步API的时，如读写文件，这些异步的API模块将会lib模块&gt;C++模块&gt;libuv接口&gt;最终系统底层的<br>API&gt;系统返回结果和JavaScript代码（callback函数的js代码）两部分，然后被封装成一个IO观察者并保存在default_loop_struct中。引<br>入观察者的模式是比较常见的事件监听方式，主要是用于判断观察者中是否有需要处理的事件。事件循环则是从观察者那里取出事件并执行。</p>
-<p>进入事件循环，调用libuv的事件循环的入库函数uv_run()，如果存在异步的IO操作，那么查询default_loop_struct保存的对应的IO观察者，<br>如果存<br>在观察者中存在系统返回的数据，则执行对应callback的JS代码，执行完毕之后main函数继续调用libuv的事件循环入库uv_run()，node进入<br>下一个Tick。</p>
-<p>有一点需要注意：只有用户的js代码全部执行完之后，node才会进入事件循环，并且uv_run()的while循环其实只做了一件事情就是判断defau<br>lt_loop_struct中是否还有IO观察者，如果没有则uv_run()退出，node进程也随之退出。若还有IO观察者，则进入epoll_wait()，线程挂起，<br>等待系统返回IO操作的结果再执行callback内容，没有数据到来则一直等待。</p>
+<p>在node进程启动时，底层C++源码会进入到main函数，同时会初始化一个数据结构default_loop_struct,这个数据结构是事件循环的核心，<br>然后加载js文件并执行。当程序执行需要调用异步API的时，如读写文件，这些异步的API模块将会lib模块&gt;C++模块&gt;libuv接口&gt;最终系统底<br>层的API&gt;系统返回结果和JavaScript代码（callback函数的js代码）两部分，然后被封装成一个IO观察者并保存在default_loop_struct<br>中。引入观察者的模式是比较常见的事件监听方式，主要是用于判断观察者中是否有需要处理的事件。事件循环则是从观察者那里取出事件并<br>执行。</p>
+<p>进入事件循环，调用libuv的事件循环的入库函数uv_run()，如果存在异步的IO操作，那么查询default_loop_struct保存的对应的IO观察<br>者，如果存在观察者中存在系统返回的数据，则执行对应callback的JS代码，执行完毕之后main函数继续调用libuv的事件循环入库uv_ru<br>n()，node进入下一个Tick。</p>
+<p>有一点需要注意：只有用户的js代码全部执行完之后，node才会进入事件循环，并且uv_run()的while循环其实只做了一件事情就是判断<br>default_loop_struct中是否还有IO观察者，如果没有则uv_run()退出，node进程也随之退出。若还有IO观察者，则进入epoll_wait()，线<br>程挂起，等待系统返回IO操作的结果再执行callback内容，没有数据到来则一直等待。</p>
 <p>总结：事件循环 和 观察者是Node异步IO构成的重要核心。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/19/node-event-loop/" data-id="cj440ev3h000264oy72mqzws3" class="article-share-link">Поделиться</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-web-semantics" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/19/web-semantics/" class="article-date">
-  <time datetime="2017-06-19T10:37:26.603Z" itemprop="datePublished">2017-06-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/19/web-semantics/">理解web语义化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>什么是语义化？其实简单说来就是让机器可以读懂内容。先随便扯扯。对于当前的 Web 而言，HTML 是联系大多数 Web 资源的纽带，<br>也是内容的载体。在 Web 被刚刚设计出来的时候，Tim Berners-Lee 可能不会想到它现在会达到的规模以及深入到我们生活的那么<br>多方面。也许起初的想法很简单：用来发布 Web 内容和资源的索引，方便人们查看。但是随着 Web 规模的不断扩大，信息量之大已<br>经不在人肉处理的范围之内了。这个时候人们开始用机器来处理 Web 上发布的各种内容，搜索引擎就诞生了。再后来，人们又设计了<br>各种智能程序来对索引好的内容作各种处理和挖掘。所以让机器能够更好地读懂 Web 上发布的各种内容就变得越来越重要。其实HTML<br>在刚开始设计出来的时候就是带有一定的「语义」的，包括段落、表格、图片、标题等等，但这些更多地只是方便浏览器等 UA 对它们<br>作合适的处理。但逐渐地，机器也要借助 HTML 提供的语义以及自然语言处理的手段来「读懂」它们从网上获取的 HTML 文档，但它<br>们无法读懂例如「红色的文字」或者是深度嵌套的表格布局中内容的含义，因为太多已有的内容都是专门为了可视化的浏览器设计的。<br>面对这种情况，出现了两种观点：</p>
-<pre><code>1. 我们可以让机器的理解能力越来越接近人类，人能看懂、听懂的东西，机器也能理解；
-2. 我们应该在发布内容的时候，就用机器可读的、被广泛认可的语义信息来描述内容，来降低机器处理 Web 内容的难度（HTML
-本身就已经是朝这个方向迈出的一小步了）。
-</code></pre><p><img src="https://pic2.zhimg.com/01b4d93c152d2a9c2db734065be0f3f5_b.jpg" alt=""></p>
-<p>我画的这个图，意思是说，内容的语义表达能力和 AI 的智能程度决定了机器分析处理 Web 内容能力的高低。上面观点 1 的方向是朝<br>着人类水平的人工智能努力，而观点 2 的方向正是万维网创始人 Tim Berners-Lee 爵士提出的美好愿景：语义网。语义网我就不多说<br>了，简单来说就是让一切内容和包括对关系的描述都成为 Web 上的资源，都可以由唯一的 URI 定义，语义明确、机器可读。显然，两<br>条路都的终极目标都很遥远，第一条路技术上难以实现，而第二条路实施起来障碍太多。我画的这个图，意思是说，内容的语义表达能力<br>和 AI 的智能程度决定了机器分析处理 Web 内容能力的高低。上面观点 1 的方向是朝着人类水平的人工智能努力，而观点 2 的方向正<br>是万维网创始人Tim Berners-Lee 爵士提出的美好愿景：语义网。语义网我就不多说了，简单来说就是让一切内容和包括对关系的描述<br>都成为 Web 上的资源，都可以由唯一的 URI 定义，语义明确、机器可读。显然，两条路都的终极目标都很遥远，第一条路技术上难以实<br>现，而第二条路实施起来障碍太多。我认为我们当前能够看得见摸得着的 Web 语义化，其实就是在往第二条路的方向上，迈出的一小步，<br>即对已经有的被广泛认可的 HTML 标准做改进。我们刚开始意识到，我们必须回归内容本身，将内容本身的语义合理地表述出来，再为不<br>同的用户代理设计不同的样式描述，也就是我们说的内容与样式分离。这样我们在提供内容的时候，首先要做的就是将内容本身进行合理<br>的描述，暂时不用考虑它的最终呈现会是什么样子。HTML 规范其实一直在往语义化的方向上努力，许多元素、属性在设计的时候，就已经<br>考虑了如何让各种用户代理甚至网络爬虫更好地理解 HTML 文档。HTML5 更是在之前规范的基础上，将所有表现层（presentational）<br>的语义描述都进行了修改或者删除，增加了不少可以表达更丰富语义的元素。为什么这样的语义元素是有意义的？因为它们被广泛认可。<br>所谓语义本身就是对符号的一种共识，被认可的程度越高、范围越广，人们就越可以依赖它实现各种各样的功能。HTML5 并非 Web 语义唯<br>一倚仗的规范，除了 W3C 和 WHATWG 外，还有其它的组织在为扩展、标准化 Web 语义做着贡献。只要有浏览器厂商、搜索引擎原意支持，<br>它们的规范一样可以成为通用的基础设施。例如 microformats 社区以及 <a href="http://Schema.org" target="_blank" rel="external">http://Schema.org</a> 上都有对 HTML 以及 Microdata（http:<br>//www.w3.org/TR/html5/microdata.html） 规范的扩展词汇表，Google、Bing、Yahoo! 等搜索引擎以及各个主流浏览器都不同程度地<br>接纳了其中定义的语义扩展，并应用在了生产中。下面举两个 Google 应用扩展语义的例子。Google 的搜索结果，可以根据 microformats<br>的 hCard 语法从抓取的页面识别出人物信息：</p>
-<p><img src="https://pic4.zhimg.com/f8ba9082973b5a7abcbfa969c02e3ce7_b.jpg" alt=""></p>
-<p>具体一点：可以看一下这个网页<a href="http://justineo.github.io/slideshows/semantic-html" target="_blank" rel="external">Semantic HTML</a>，这是前人总结的比较好<br>的html语义化的说明</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/19/web-semantics/" data-id="cj440ev3i000364oy1rzo2k4k" class="article-share-link">Поделиться</a>
+      <a data-url="http://yoursite.com/2017/06/19/node-event-loop/" data-id="cj440k0ih00036yoy3ttfgg7y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -183,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/create-myblog/" data-id="cj440ev33000164oyekp22iip" class="article-share-link">Поделиться</a>
+      <a data-url="http://yoursite.com/2017/05/11/create-myblog/" data-id="cj440k0i800006yoys3fappe4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -228,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/05/hello-world/" data-id="cj440ev2y000064oy1oy8clf6" class="article-share-link">Поделиться</a>
+      <a data-url="http://yoursite.com/2017/05/05/hello-world/" data-id="cj440k0id00016yoyw8h6n3bi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -253,7 +253,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Архив</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
     </div>
@@ -263,16 +263,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Недавние записи</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/06/19/node-event-loop/">简单谈谈node异步IO与事件循环</a>
+            <a href="/2017/06/19/web-semantics/">理解web语义化</a>
           </li>
         
           <li>
-            <a href="/2017/06/19/web-semantics/">理解web语义化</a>
+            <a href="/2017/06/19/node-event-loop/">简单谈谈node异步IO与事件循环</a>
           </li>
         
           <li>
@@ -296,7 +296,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
